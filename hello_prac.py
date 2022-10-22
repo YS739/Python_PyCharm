@@ -6,6 +6,9 @@ data = requests.get('https://movie.naver.com/movie/sdb/rank/rmovie.naver?sel=pnt
 
 soup = BeautifulSoup(data.text, 'html.parser')
 
+movies = soup.select('#old_content > table > tbody > tr')
 
-title = soup.select_one('#old_content > table > tbody > tr:nth-child(2) > td.title > div > a')
-print(title.text)
+for movie in movies:
+    a = movie.select_one('td.title > div > a')
+    if a is not None:
+        print(a.text)
