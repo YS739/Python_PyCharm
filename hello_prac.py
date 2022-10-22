@@ -1,12 +1,9 @@
-people = [{'name': 'bob', 'age': 27},
-          {'name': 'carry', 'age': 30}]
+import requests
 
+r = requests.get('http://spartacodingclub.shop/sparta_api/seoulair')
+rjson = r.json()
 
-def get_age(myname):
-    for person in people:
-        if person['name'] == myname:
-            return person['age']
-        return '해당하는 이름이 없습니다'
+gus = rjson['RealtimeCityAir']['row']
 
-
-print(get_age('bob'))
+for gu in gus:
+    print(gu['MSRSTE_NM'], gu['IDEX_MVL'])
