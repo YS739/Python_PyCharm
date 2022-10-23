@@ -12,4 +12,7 @@ for music in genie:
         rank = music.select_one('td.number').text[0:2].strip()
         title = music.select_one('td.info > a.title.ellipsis').text.strip()
         singer = music.select_one('td.info > a.artist.ellipsis').text
+        if "19금" in title:
+            title = title.replace("\n", " ");
+            title = title.replace("  ", "");
         print(rank, title, singer)
